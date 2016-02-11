@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:nsd="http://structorizer.fisch.lu/" text="&#34;IL_SENSORE_TERMICO&#34;" comment="" color="ffffff" type="program" style="nice">
+	<children>
+		<instruction text="&#34;definisco:  &#34;,&#34;PIN_SENS A0&#34;,&#34;PIN_LED1 7&#34;,&#34;PIN_LED2 6&#34;,&#34;PIN_LED3 5&#34;,&#34;TOLLERANZA 0.15&#34;,&#34;TEMP_PRED 21.9&#34;,&#34;SLEEP 250&#34;" comment="" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;variabili misura, temperatura_c &#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;modalità del pin:&#34;,&#34;PIN_SENS è un IMPUT&#34;,&#34;PIN_LED1 è un OUTPUT&#34;,&#34;PIN_LED2 è un OUTPUT&#34;,&#34;PIN_LED3 è un OUTPUT&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;PIN_LED1 al livello digitale &#34;&#34;0&#34;&#34;&#34;,&#34;PIN_LED2 al livello digitale &#34;&#34;0&#34;&#34;&#34;,&#34;PIN_LED3 al livello digitale &#34;&#34;0&#34;&#34;&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;misura = valore letto da PIN_SENS&#34;" comment="" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;temperatura_c = 3.73/1024*10*misura&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+		<forever text="" comment="" color="ffffff">
+			<qForever>
+				<alternative text="&#34;temperatura_c &#62; TEMP_PRED - TOLLERANZA AND temperatura_c &#60; TEMP_PRED + TOLLERANZA&#34;" comment="" color="ffffff">
+					<qTrue>
+						<instruction text="&#34;PIN_LED2 al livello digitale &#34;&#34;1&#34;&#34;&#34;" comment="" color="ffffff" rotated="0"></instruction>
+					</qTrue>
+					<qFalse>
+						<alternative text="&#34;temperatura_c &#60; TEMP_PRED - TOLLERANZA&#34;" comment="" color="ffffff">
+							<qTrue>
+								<instruction text="&#34;PIN_LED1 al livello digitale &#34;&#34;1&#34;&#34;&#34;" comment="" color="ffffff" rotated="0"></instruction>
+							</qTrue>
+							<qFalse>
+								<instruction text="&#34;PIN_LED3 al livello digitale &#34;&#34;1&#34;&#34;&#34;" comment="" color="ffffff" rotated="0"></instruction>
+							</qFalse>
+						</alternative>
+					</qFalse>
+				</alternative>
+				<instruction text="&#34;mostra a video il valore di temperatura_c&#34;" comment="" color="ffffff" rotated="0"></instruction>
+				<instruction text="&#34;aspetta per SLEEP millisecondi&#34;" comment="" color="ffffff" rotated="0"></instruction>
+			</qForever>
+		</forever>
+	</children>
+</root>
